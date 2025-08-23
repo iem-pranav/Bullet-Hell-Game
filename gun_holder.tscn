@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1g3bhd7s8j38"]
+
+[ext_resource type="Script" path="res://Scripts/gun_holder.gd" id="1_wrdtu"]
+[ext_resource type="Texture2D" uid="uid://dx7lov4nl16ut" path="res://Assets/Desert Eagle Sheet.png" id="2_v0wjy"]
+
+[node name="GunHolder" type="Marker2D"]
+script = ExtResource("1_wrdtu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(19, -2)
+texture = ExtResource("2_v0wjy")
+
+[node name="ShootPoint" type="Marker2D" parent="Sprite2D"]
+position = Vector2(13, -3)

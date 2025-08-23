@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://dajs3o7nh5o8w"]
+
+[ext_resource type="Texture2D" uid="uid://bd77yhws8e41q" path="res://Assets/crosshair.png" id="1_ul6su"]
+[ext_resource type="Script" path="res://Scripts/crosshair.gd" id="2_d7ple"]
+
+[sub_resource type="Animation" id="Animation_hoss0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CrossHair:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+
+[sub_resource type="Animation" id="Animation_bgk8x"]
+resource_name = "pulse"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CrossHair:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(0.1, 0.1), Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qbuqb"]
+_data = {
+"RESET": SubResource("Animation_hoss0"),
+"pulse": SubResource("Animation_bgk8x")
+}
+
+[node name="CrossHair" type="Sprite2D"]
+position = Vector2(89, 92)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_ul6su")
+script = ExtResource("2_d7ple")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_qbuqb")
+}
+autoplay = "pulse"
+speed_scale = 3.0

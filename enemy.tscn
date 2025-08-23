@@ -1,0 +1,108 @@
+[gd_scene load_steps=18 format=3 uid="uid://bquo43tut7xwb"]
+
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_hqihh"]
+[ext_resource type="Texture2D" uid="uid://byux6oedy4x5i" path="res://Assets/U_Walk.png" id="2_lljbh"]
+[ext_resource type="PackedScene" uid="uid://cgqe8v0ppa8v" path="res://Scenes/hit_effect.tscn" id="2_nc1u7"]
+[ext_resource type="Script" path="res://Scripts/shooter.gd" id="3_rwxbq"]
+[ext_resource type="AudioStream" uid="uid://bn4v3veun2j02" path="res://Assets for Game/Assets for Game/Sounds/enemy_fire.mp3" id="5_qox4k"]
+[ext_resource type="PackedScene" uid="uid://caer6csde0r8w" path="res://Scenes/health_bar.tscn" id="5_w5aa3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmrou"]
+atlas = ExtResource("2_lljbh")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcw4f"]
+atlas = ExtResource("2_lljbh")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpjs0"]
+atlas = ExtResource("2_lljbh")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2q6g2"]
+atlas = ExtResource("2_lljbh")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cancj"]
+atlas = ExtResource("2_lljbh")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37e55"]
+atlas = ExtResource("2_lljbh")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pup3k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmrou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcw4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpjs0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2q6g2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cancj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37e55")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iru5l"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_att20"]
+radius = 13.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2g3w"]
+bg_color = Color(0.262932, 0.262932, 0.262932, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dllyj"]
+bg_color = Color(0.883443, 0, 0.0628854, 1)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_hqihh")
+hit_effect = ExtResource("2_nc1u7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pup3k")
+autoplay = "default"
+frame_progress = 0.139082
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_iru5l")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_att20")
+debug_color = Color(0.901851, 0.288042, 0.300615, 0.42)
+
+[node name="Shooter" type="Marker2D" parent="."]
+script = ExtResource("3_rwxbq")
+
+[node name="sfx_shoot" type="AudioStreamPlayer2D" parent="Shooter"]
+stream = ExtResource("5_qox4k")
+volume_db = 15.0
+
+[node name="HealthBar" parent="." instance=ExtResource("5_w5aa3")]
+offset_left = -11.0
+offset_top = -13.0
+offset_right = 10.0
+offset_bottom = -10.0
+theme_override_styles/background = SubResource("StyleBoxFlat_o2g3w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dllyj")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

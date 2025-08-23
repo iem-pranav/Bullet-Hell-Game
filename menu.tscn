@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckcabtv3jwfb3"]
+
+[ext_resource type="Texture2D" uid="uid://c86w6ff14nytp" path="res://Assets/menu_bg.png" id="1_6pllp"]
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_aislh"]
+[ext_resource type="FontFile" uid="uid://bmb4v1u1nxme6" path="res://Assets/Assets for Game/Fonts/SupremeSpike-KVO8D.otf" id="2_vaj8a"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aislh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(970, 550)
+scale = Vector2(2.06873, 1.98876)
+texture = ExtResource("1_6pllp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 203.0
+offset_top = 293.0
+offset_right = 2110.0
+offset_bottom = 482.0
+scale = Vector2(0.80279, 0.940714)
+theme_override_constants/outline_size = 45
+theme_override_constants/shadow_outline_size = 700
+theme_override_fonts/font = ExtResource("2_vaj8a")
+theme_override_font_sizes/font_size = 196
+text = "BULLET HELL"
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 2
+offset_left = 746.0
+offset_top = 555.0
+offset_right = 1114.0
+offset_bottom = 656.0
+theme_override_fonts/font = ExtResource("2_vaj8a")
+theme_override_font_sizes/font_size = 68
+text = "PLAY
+"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 2
+offset_left = 746.0
+offset_top = 689.0
+offset_right = 1114.0
+offset_bottom = 790.0
+theme_override_fonts/font = ExtResource("2_vaj8a")
+theme_override_font_sizes/font_size = 68
+text = "EXIT"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
