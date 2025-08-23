@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://uugq8t7pvv3b"
+path="res://.godot/imported/Defeated (Game Over Tune).ogg-1592fe5cf84c16f18a8407f3169a8d2a.oggvorbisstr"
+
+[deps]
+
+source_file="res://Sounds/Defeated (Game Over Tune).ogg"
+dest_files=["res://.godot/imported/Defeated (Game Over Tune).ogg-1592fe5cf84c16f18a8407f3169a8d2a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
